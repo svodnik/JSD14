@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>JSD13 - Configuring Git to use Multiple Accounts (Mac)</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+      <div class="container pad">
+        <!--[if lt IE 7]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="container blueheader">
+          <h1>Configuring Git to use Multiple Accounts (Mac)</h1>
+        </div>
+
+        <div class="light-blue-bg container push-bottom">
+          <p>If you use multiple accounts with Git (for instance, a work or personal GitHub account in addition to your GA GitHub Enterprise account), you need to configure git a bit differently than the default instructions outlined on github.com. Use this page as your guide for finishing your GitHub Enterprise setup.</p>
+
+          <ol>
+            <li>Log into your account at <a href="https://git.generalassemb.ly">https://git.generalassemb.ly</a></li>
+            
+            <li>Follow <a href="https://help.github.com/enterprise/2.15/user/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/">these
+            instructions</a>
+            to create a new <em>SSH Key</em> (a special, very secure, key which allows your
+            laptop access to your github account without having to remember your github
+            password), <strong>with the following exceptions</strong>:</li>
+            <h3>Generating a new SSH key, Step 3</h3>
+            <p>When you're prompted to "Enter a file in which to save the key," type <code>/Users/[username]/.ssh/id_rsa_ga</code>, where [username] is your Mac username, and then press Enter.</p>
+
+            <h3>Adding your SSH key to the ssh-agent, Step 2</h3>
+            <p>When adding your key to the SSH agent, you need to add additional information the <code>~/.ssh/config</code> file.</p>
+            <ul>
+              <li>In your editor, open your home directory, navigate to the <code>.ssh</code> folder, then open the file named <code>config</code> (if this file doesn't exist, go to the terminal, run <code>touch ~/.ssh/config</code>, then open the file in your editor.)</li>
+              <li>Add a second entry to your file using the following as a template:
+  <pre><code class="bash language-bash">
+    # my GitHub account 
+    Host personal
+      HostName github.com
+      User git
+      AddKeysToAgent yes
+      UseKeychain yes
+      IdentityFile ~/.ssh/id_rsa
+      IdentitiesOnly yes
+    
+    # GA github Enterprise
+    Host GA   
+      HostName git.generalassemb.ly
+      User git
+      AddKeysToAgent yes
+      UseKeychain yes
+      IdentityFile ~/.ssh/id_rsa_ga
+      IdentitiesOnly yes
+    
+    # wildcard
+    Host *
+      AddKeysToAgent yes
+      UseKeychain yes
+  </code></pre>
+              </li>
+              <li>Save your changes</li>
+            </ul>
+            
+            <li>Add your new SSH Key to GitHub Enterprise following <a href="https://help.github.com/enterprise/2.15/user/articles/adding-a-new-ssh-key-to-your-github-account/">these
+            instructions</a></li>
+            
+            <li>Verify your key works by running the following:</li>
+            </ul>
+            
+            <pre><code class="bash language-bash">ssh -T git@git.generalassemb.ly</code></pre>
+            
+            <p>You should see output similar to:</p>
+            
+            <p><code>
+            Hi &lt;you&gt;! You've successfully authenticated, but GitHub does not provide shell access.
+            Connection to git.generalassemb.ly closed.
+            </code></p>
+        </div>
+      </div>        
+    </body>
+</html>
