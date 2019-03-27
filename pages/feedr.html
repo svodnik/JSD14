@@ -138,16 +138,18 @@ $.get("https://cors-anywhere.herokuapp.com/http://digg.com/api/news/popular.json
 });
 					</code></pre>
 
-					<p>
-						If you use your own feeds, they must have APIs with the following minimum requirements:
-					</p>
+					<p>If you use your own feeds, they must have APIs with the following minimum requirements:</p>
 
 					<ul>
 						<li>Each article must provide an image source for the circular thumbnail at the left of the article.</li>
 						<li>Must provide either a category, tag, or custom taxonomy to display below the title (of course title of article is also required).</li>
 						<li>Must provide a point, ranking, or some type of total impressions for the respective article.</li>
 						<li>Must provide either a full version or a summary of the article for the pop up screen.</li>
-					</ul>
+          </ul>
+          
+          <p>Because some popular APIs don't include all of this data, though, you may need
+            to get creative. Feel free to talk with your instructor about ways to make up
+            for missing data.</p>
 				</div>
 				<div class="info-card push-bottom">
 					<h3>Feed Goals</h3>
@@ -227,7 +229,7 @@ $.get("https://cors-anywhere.herokuapp.com/http://digg.com/api/news/popular.json
 						Begin by forking the starter <a href="https://git.generalassemb.ly/vodnik/feedr">code repository</a>. You can do so by clicking the "Fork" icon on the top right of <a href="https://git.generalassemb.ly/vodnik/feedr">this</a> page. Once complete, click the "Clone or download" button on your fork of the repo, copy the link, switch to your terminal, navigate to your <code>JSD</code> folder, type <code>git clone</code> followed by a space, paste the link you copied, and then press <strong>return</strong>.
 
 					<p>
-						You can then open the <code>Feedr</code> folder in Visual Studio Code and work on the below steps. As you complete a feature, be sure to commit it in Git with the following commands:
+						You can then open the <code>Feedr</code> folder in your editor and work on the below steps. As you complete a feature, be sure to commit it in Git with the following commands:
 					</p>
 
 					<p>
